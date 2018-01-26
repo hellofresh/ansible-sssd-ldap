@@ -1,5 +1,7 @@
-sssd_ldap
+sssd-ldap
 =========
+
+[![Build Status](https://travis-ci.org/antonu17/ansible-sssd-ldap.svg?branch=master)](https://travis-ci.org/antonu17/ansible-sssd-ldap)
 
 Install and configure sssd, nsswitch, pam and sshd to get user accounts from LDAP
 
@@ -32,7 +34,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: sssd_ldap }
+         - { role: sssd-ldap }
 
 License
 -------
