@@ -1,0 +1,20 @@
+[sssd]
+config_file_version = 2
+services = nss, pam, ssh
+domains = default
+debug_level = 5
+
+[nss]
+filter_users = root,ldap,named,avahi,haldaemon,dbus,radiusd,news,nscd
+
+[domain/default]
+id_provider = ldap
+auth_provider = ldap
+ldap_search_base = {{ sssd_ldap_search_base }}
+ldap_tls_reqcert = never
+ldap_uri = {{ sssd_ldap_uri }}
+enumerate = true
+ldap_default_bind_dn = {{ sssd_ldap_default_bind_dn }}
+ldap_default_authtok_type = password
+ldap_default_authtok = {{ sssd_ldap_default_authtok }}
+ldap_user_ssh_public_key = {{ sssd_ldap_user_ssh_public_key }}

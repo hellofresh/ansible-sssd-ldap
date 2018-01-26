@@ -1,0 +1,14 @@
+---
+- name: sssd_ldap | nsswitch | enable sss
+  replace:
+    dest: /etc/nsswitch.conf
+    regexp: '^({{ item }}(?!.*\bsss\b).*)$'
+    replace: '\1 sss'
+    backup: yes
+  with_items:
+    - passwd
+    - group
+    - shadow
+    - services
+    - netgroup
+    - sudoers

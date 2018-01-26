@@ -1,0 +1,21 @@
+---
+galaxy_info:
+  author: antonu17
+  description: Anton Ustyuzhanin
+  company: HelloFresh
+
+  license: MIT
+
+  min_ansible_version: 1.2
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - xenial
+
+  galaxy_tags:
+    - sssd
+    - ldap
+    - ssh
+
+dependencies: []
