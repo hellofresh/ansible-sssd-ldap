@@ -1,5 +1,5 @@
 ---
-- name: sssd_ldap | nsswitch | enable sss
+- name: nsswitch | enable sss
   replace:
     dest: /etc/nsswitch.conf
     regexp: '^({{ item }}(?!.*\bsss\b).*)$'

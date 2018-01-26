@@ -1,5 +1,5 @@
 ---
-- name: sssd_ldap | pamd | add pam_mkhomedir for Debian machines
+- name: pamd | add pam_mkhomedir for Debian machines
   copy:
     src: pam_mkhomedir
     dest: /usr/share/pam-configs/sssd_mkhomedir

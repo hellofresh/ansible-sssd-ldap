@@ -1,5 +1,5 @@
 ---
-- name: sssd_ldap | configure sssd
+- name: configure sssd
   template:
     src: sssd.conf.j2
     dest: /etc/sssd/sssd.conf
