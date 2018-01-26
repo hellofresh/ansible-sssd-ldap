@@ -1,5 +1,5 @@
 ---
-- name: sssd_ldap | sshd | enable authorized keys lookup script
+- name: sshd | enable authorized keys lookup script
   lineinfile:
     path: /etc/ssh/sshd_config
     line: 'AuthorizedKeysCommand /usr/bin/sss_ssh_authorizedkeys'
