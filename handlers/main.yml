@@ -1,0 +1,14 @@
+---
+# handlers file for sssd_ldap
+- name: restart sssd
+  service:
+    name: sssd
+    state: restarted
+
+- name: run pam auth update
+  shell: pam-auth-update --package
+
+- name: restart sshd
+  service:
+    name: "{{ sssd_ldap_ssh_service }}"
+    state: restarted

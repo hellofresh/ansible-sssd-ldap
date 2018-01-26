@@ -1,0 +1,10 @@
+---
+sssd_ldap_packages:
+  - sssd
+  - sssd-ldap
+  - sudo
+  - openssh-server
+  - libnss-sss
+  - libpam-sss
+
+sssd_ldap_ssh_service: ssh

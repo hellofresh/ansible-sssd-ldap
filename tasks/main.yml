@@ -1,0 +1,21 @@
+---
+# tasks file for sssd_ldap
+- name: gather os specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution|lower }}-{{ ansible_distribution_version }}.yml"
+    - "{{ ansible_distribution|lower }}-{{ ansible_distribution_release }}.yml"
+    - "{{ ansible_distribution|lower }}.yml"
+    - "{{ ansible_os_family|lower }}.yml"
+    - defaults.yml
+  tags: vars
+
+- import_tasks: packages.yml
+
+- import_tasks: sssd.yml
+
+- import_tasks: nsswitch.yml
+
+- import_tasks: pamd.yml
+
+- import_tasks: sshd.yml

@@ -1,0 +1,6 @@
+---
+- name: sssd_ldap | packages | install packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ sssd_ldap_packages }}"
