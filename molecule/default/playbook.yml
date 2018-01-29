@@ -2,4 +2,4 @@
 - name: Converge
   hosts: all
   roles:
-    - role: ansible-role-sssd_ldap
+    - role: ansible-sssd-ldap

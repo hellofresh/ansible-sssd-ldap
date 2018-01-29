@@ -1,0 +1,9 @@
+---
+language: python
+services:
+  - docker
+install:
+  - pip install molecule
+  - pip install docker
+script:
+  - molecule test

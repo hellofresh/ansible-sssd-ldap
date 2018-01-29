@@ -10,12 +10,12 @@
     - defaults.yml
   tags: vars
 
-- import_tasks: packages.yml
+- include: packages.yml
 
-- import_tasks: sssd.yml
+- include: sssd.yml
 
-- import_tasks: nsswitch.yml
+- include: nsswitch.yml
 
-- import_tasks: pamd.yml
+- include: pamd.yml
 
-- import_tasks: sshd.yml
+- include: sshd.yml
