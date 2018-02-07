@@ -18,3 +18,6 @@ ldap_default_bind_dn = {{ sssd_ldap_default_bind_dn }}
 ldap_default_authtok_type = password
 ldap_default_authtok = {{ sssd_ldap_default_authtok }}
 ldap_user_ssh_public_key = {{ sssd_ldap_user_ssh_public_key }}
+{% if sssd_ldap_override_gid is defined %}
+override_gid = {{ sssd_ldap_override_gid }}
+{% endif %}

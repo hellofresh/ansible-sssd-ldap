@@ -4,6 +4,6 @@ services:
   - docker
 install:
   - pip install molecule
-  - pip install docker
+  - pip install docker-py
 script:
   - molecule test
