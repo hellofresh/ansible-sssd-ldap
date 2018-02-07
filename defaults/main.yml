@@ -4,3 +4,5 @@ sssd_ldap_uri: ldap://example.org
 sssd_ldap_default_bind_dn: cn=manager,dc=example,dc=org
 sssd_ldap_default_authtok: bind_password
 sssd_ldap_user_ssh_public_key: sshPublicKey
+# If you need to override user's primary group you can use `sssd_ldap_override_gid` variable
+# sssd_ldap_override_gid: 500
