@@ -3,6 +3,12 @@
   hosts: all
   gather_facts: true
   become: true
+
+  vars:
+    openssh_clients:
+      Debian: openssh-client
+      RedHat: openssh-clients
+
   roles:
     - role: openldap
       openldap_server_domain_name: example.com
@@ -10,7 +16,8 @@
       openldap_server_enable_ssl: false
 
   tasks:
-    - package:
+    - name: install python-ldap
+      package:
         name: python-ldap
     - name: Make sure we have an test user
       ldap_entry:
@@ -50,3 +57,6 @@
       file:
         path: /run/nologin
         state: absent
+    - name: install ssh client
+      package:
+        name: "{{ openssh_clients[ansible_os_family] }}"
