@@ -1,5 +1,36 @@
 ---
 - name: Prepare
   hosts: all
-  gather_facts: false
-  tasks: []
+  gather_facts: true
+  become: true
+  roles:
+    - role: openldap
+      openldap_server_domain_name: example.com
+      openldap_server_rootpw: s3cr3t
+      openldap_server_enable_ssl: false
+
+  tasks:
+    - package:
+        name: python-ldap
+    - name: Make sure we have an test user
+      ldap_entry:
+        bind_dn: cn=Manager,dc=example,dc=com
+        bind_pw: s3cr3t
+        dn: cn=test,dc=example,dc=com
+        objectClass:
+          - top
+          - person
+          - posixAccount
+          - inetOrgPerson
+          - organizationalPerson
+          - ldapPublicKey
+        attributes:
+          uid: test
+          uidNumber: 5000
+          givenName: Test
+          sn: Test
+          cn: Test
+          loginShell: /bin/bash
+          homeDirectory: /home/test
+          sshPublicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYaGyXcqdQUIxjPr3eqXro9X/2LrLH2o+OrFeGRB2u3WxigroynxD8vLjtG6qyYYtgnvR9+2usVhbNNS3QdF3G5wenCR4Zpk6VIYofQrBYmrzJG9Bsig3G4SgnGF2x4KimupjCdD4+1S9OMF/4GzQZdaLl2HkSTYE+6430FbSD8i3IdpbRI526X8q4njrTHgIYUtAVFTPSudZ/3fIzFpfNlWq5wy1CXCGc7aqmHECQzareeoAM5NfgrUkw7TFrKP/zelDkqpJ6pwYTWg2VZYmoXmh2o+ttWFatGzJPUoeU/r+SjMn4YvMunT+L6NIrbJQkXwB9i3upMx2bQcuPl0cl test-key
+          gidNumber: 1
