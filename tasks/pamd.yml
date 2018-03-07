@@ -6,3 +6,8 @@
   when: ansible_os_family == "Debian"
   notify:
     - run pam auth update
+
+- name: pamd | add pam_mkhomedir for RedHat machines
+  command: authconfig --enablemkhomedir --update
+  changed_when: false
+  when: ansible_os_family == "RedHat"

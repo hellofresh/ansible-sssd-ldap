@@ -1,0 +1,9 @@
+---
+sssd_ldap_packages:
+  - sssd
+  - sssd-ldap
+  - sudo
+  - openssh-server
+  - authconfig
+
+sssd_ldap_ssh_service: sshd

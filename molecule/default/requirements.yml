@@ -1,0 +1,4 @@
+---
+- src: git+https://github.com/antonu17/openldap_server.git
+  version: master
+  name: openldap
