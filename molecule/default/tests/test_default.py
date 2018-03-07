@@ -26,8 +26,14 @@ def test_sssd_service_state(host):
 
 
 def test_sshd_service_state(host):
-    assert host.service('sshd').is_enabled
-    assert host.service('sshd').is_running
+    ssh_service_name = {
+        'centos': 'sshd',
+        'ubuntu': 'ssh'
+    }
+    assert host.service(
+        ssh_service_name[host.system_info.distribution]).is_enabled
+    assert host.service(
+        ssh_service_name[host.system_info.distribution]).is_running
 
 
 def test_ssh_access(host):
