@@ -1,5 +1,5 @@
 ---
-- name: configure sssd
+- name: sssd | configure sssd
   template:
     src: sssd.conf.j2
     dest: /etc/sssd/sssd.conf
@@ -9,3 +9,8 @@
     group: root
   notify:
     - restart sssd
+
+- name: sssd | ensure sssd service is enabled
+  service:
+    name: sssd
+    enabled: true

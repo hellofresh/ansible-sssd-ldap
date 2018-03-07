@@ -6,9 +6,14 @@
   notify:
     - restart sshd
 
-- name: sssd_ldap | sshd | make authorized keys lookup script run as nobody
+- name: sshd | make authorized keys lookup script run as nobody
   lineinfile:
     path: /etc/ssh/sshd_config
     line: 'AuthorizedKeysCommandUser nobody'
   notify:
     - restart sshd
+
+- name: sshd | ensure sshd service is enabled
+  service:
+    name: sshd
+    enabled: true
