@@ -8,6 +8,6 @@
     - run pam auth update
 
 - name: pamd | add pam_mkhomedir for RedHat machines
-  command: authconfig --enablemkhomedir --update
+  command: /usr/sbin/authconfig --enablemkhomedir --update
   changed_when: false
   when: ansible_os_family == "RedHat"
