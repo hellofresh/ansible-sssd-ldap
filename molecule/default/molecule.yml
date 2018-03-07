@@ -32,7 +32,7 @@ provisioner:
         sssd_ldap_default_bind_dn: cn=Manager,dc=example,dc=com
         sssd_ldap_default_authtok: s3cr3t
         sssd_ldap_user_ssh_public_key: sshPublicKey
-        sssd_ldap_override_gid: 500
+        sssd_ldap_override_gid: 1
   lint:
     name: ansible-lint
     options:
