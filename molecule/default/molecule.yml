@@ -6,8 +6,12 @@ driver:
 lint:
   name: yamllint
 platforms:
+  - name: ubuntu-trusty
+    image: ubuntu-upstart
+    command: /sbin/init
+    privileged: True
   - name: ubuntu-xenial
-    image: solita/ubuntu-systemd:latest
+    image: solita/ubuntu-systemd
     command: /sbin/init
     privileged: True
     capabilities:

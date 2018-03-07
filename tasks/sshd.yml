@@ -15,5 +15,10 @@
 
 - name: sshd | ensure sshd service is enabled
   service:
-    name: sshd
+    name: "{{ sssd_ldap_ssh_service }}"
     enabled: true
+
+- name: sshd | ensure sshd service is started
+  service:
+    name: "{{ sssd_ldap_ssh_service }}"
+    state: started
