@@ -19,6 +19,7 @@ def test_sssd_ldap_user(host):
     assert user.uid == 5000
     assert user.gid == 1
 
+
 def test_sssd_ldap_user_filtered(host):
     user = host.user('filtered-test')
     assert not user.exists
