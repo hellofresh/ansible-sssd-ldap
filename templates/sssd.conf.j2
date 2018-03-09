@@ -11,6 +11,12 @@ filter_users = root,ldap,named,avahi,haldaemon,dbus,radiusd,news,nscd
 id_provider = ldap
 auth_provider = ldap
 ldap_search_base = {{ sssd_ldap_search_base }}
+{% if sssd_ldap_user_search_base is defined %}
+ldap_user_search_base = {{ sssd_ldap_user_search_base }}
+{% endif %}
+{% if sssd_ldap_group_search_base is defined %}
+ldap_group_search_base = {{ sssd_ldap_group_search_base }}
+{% endif %}
 ldap_tls_reqcert = never
 ldap_uri = {{ sssd_ldap_uri }}
 enumerate = true
