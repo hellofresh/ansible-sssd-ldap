@@ -32,6 +32,7 @@ provisioner:
     group_vars:
       all:
         sssd_ldap_search_base: dc=example,dc=com
+        sssd_ldap_user_search_base: dc=example,dc=com?subtree?(uidNumber=5000)
         sssd_ldap_uri: ldap://localhost
         sssd_ldap_default_bind_dn: cn=Manager,dc=example,dc=com
         sssd_ldap_default_authtok: s3cr3t

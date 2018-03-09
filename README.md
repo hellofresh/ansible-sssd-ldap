@@ -16,6 +16,8 @@ Role Variables
 You can override variables in your group_vars
 
 - `sssd_ldap_search_base: dc=example,dc=org`
+- `sssd_ldap_user_search_base: see sssd-ldap man page`
+- `sssd_ldap_group_search_base: see sssd-ldap man page`
 - `sssd_ldap_uri: ldap://example.org`
 - `sssd_ldap_default_bind_dn: cn=manager,dc=example,dc=org`
 - `sssd_ldap_default_authtok: bind_password`
