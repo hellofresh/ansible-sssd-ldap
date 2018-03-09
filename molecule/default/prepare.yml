@@ -19,11 +19,11 @@
     - name: install python-ldap
       package:
         name: python-ldap
-    - name: Make sure we have an test user
+    - name: Make sure we have two test users
       ldap_entry:
         bind_dn: cn=Manager,dc=example,dc=com
         bind_pw: s3cr3t
-        dn: cn=test,dc=example,dc=com
+        dn: 'uid={{ item.uid }},dc=example,dc=com'
         objectClass:
           - top
           - person
@@ -32,15 +32,24 @@
           - organizationalPerson
           - ldapPublicKey
         attributes:
+          uid: "{{ item.uid }}"
+          uidNumber: "{{ item.uidNumber }}"
+          givenName: "{{ item.name }}"
+          sn: "{{ item.name }}"
+          cn: "{{ item.name }}"
+          loginShell: /bin/bash
+          homeDirectory: "/home/{{ item.uid }}"
+          sshPublicKey: "{{ item.sshPublicKey }}"
+          gidNumber: "{{ item.uidNumber }}"
+      with_items:
+        - name: Test
           uid: test
           uidNumber: 5000
-          givenName: Test
-          sn: Test
-          cn: Test
-          loginShell: /bin/bash
-          homeDirectory: /home/test
           sshPublicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYaGyXcqdQUIxjPr3eqXro9X/2LrLH2o+OrFeGRB2u3WxigroynxD8vLjtG6qyYYtgnvR9+2usVhbNNS3QdF3G5wenCR4Zpk6VIYofQrBYmrzJG9Bsig3G4SgnGF2x4KimupjCdD4+1S9OMF/4GzQZdaLl2HkSTYE+6430FbSD8i3IdpbRI526X8q4njrTHgIYUtAVFTPSudZ/3fIzFpfNlWq5wy1CXCGc7aqmHECQzareeoAM5NfgrUkw7TFrKP/zelDkqpJ6pwYTWg2VZYmoXmh2o+ttWFatGzJPUoeU/r+SjMn4YvMunT+L6NIrbJQkXwB9i3upMx2bQcuPl0cl test-key
-          gidNumber: 5000
+        - name: Filtered
+          uid: filtered-test
+          uidNumber: 5001
+          sshPublicKey: ''
     - name: create /root/.ssh dir
       file:
         path: /root/.ssh
