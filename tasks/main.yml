@@ -19,3 +19,5 @@
 - include: pamd.yml
 
 - include: sshd.yml
+
+- meta: flush_handlers
