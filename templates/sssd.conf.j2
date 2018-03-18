@@ -1,29 +1,87 @@
 [sssd]
 config_file_version = 2
-services = nss, pam, ssh
-domains = default
-debug_level = 5
+services = {{ sssd_defaults.services }}
+domains = {{ sssd_domains | map(attribute='name') | join(',') }}
+debug_level = {{ sssd_defaults.debug_level }}
 
 [nss]
-filter_users = root,ldap,named,avahi,haldaemon,dbus,radiusd,news,nscd
+filter_users = {{ sssd_nss.filter_users }}
+filter_groups = {{ sssd_nss.filter_users }}
 
-[domain/default]
-id_provider = ldap
-auth_provider = ldap
-ldap_search_base = {{ sssd_ldap_search_base }}
-{% if sssd_ldap_user_search_base is defined %}
-ldap_user_search_base = {{ sssd_ldap_user_search_base }}
+{% for domain in sssd_domains %}
+[domain/{{ domain.name }}]
+{# providers #}
+id_provider = {{ domain.id_provider
+    if domain.id_provider is defined
+    else sssd_domain_defaults.id_provider }}
+auth_provider = {{ domain.auth_provider
+    if domain.auth_provider is defined
+    else sssd_domain_defaults.auth_provider }}
+enumerate = {{ domain.enumerate
+    if domain.enumerate is defined
+    else sssd_domain_defaults.enumerate }}
+{# ldap connection #}
+ldap_uri = {{ domain.ldap_uri
+    if domain.ldap_uri is defined
+    else sssd_domain_defaults.ldap_uri }}
+ldap_id_use_start_tls = {{ domain.ldap_id_use_start_tls
+    if domain.ldap_id_use_start_tls is defined
+    else sssd_domain_defaults.ldap_id_use_start_tls }}
+ldap_tls_reqcert = {{ domain.ldap_tls_reqcert
+    if domain.ldap_tls_reqcert is defined
+    else sssd_domain_defaults.ldap_tls_reqcert }}
+ldap_default_bind_dn = {{ domain.ldap_default_bind_dn
+    if domain.ldap_default_bind_dn is defined
+    else sssd_domain_defaults.ldap_default_bind_dn }}
+ldap_default_authtok_type = {{ domain.ldap_default_authtok_type
+    if domain.ldap_default_authtok_type is defined
+    else sssd_domain_defaults.ldap_default_authtok_type }}
+ldap_default_authtok = {{ domain.ldap_default_authtok
+    if domain.ldap_default_authtok is defined
+    else sssd_domain_defaults.ldap_default_authtok }}
+ldap_search_base = {{ domain.ldap_search_base
+    if domain.ldap_search_base is defined
+    else sssd_domain_defaults.ldap_search_base }}
+{# custom user settings #}
+{% if domain.ldap_user_search_base is defined %}
+ldap_user_search_base = {{ domain.ldap_user_search_base }}
 {% endif %}
-{% if sssd_ldap_group_search_base is defined %}
-ldap_group_search_base = {{ sssd_ldap_group_search_base }}
+{% if domain.ldap_user_object_class is defined %}
+ldap_user_object_class = {{ domain.ldap_user_object_class }}
 {% endif %}
-ldap_tls_reqcert = never
-ldap_uri = {{ sssd_ldap_uri }}
-enumerate = true
-ldap_default_bind_dn = {{ sssd_ldap_default_bind_dn }}
-ldap_default_authtok_type = password
-ldap_default_authtok = {{ sssd_ldap_default_authtok }}
-ldap_user_ssh_public_key = {{ sssd_ldap_user_ssh_public_key }}
-{% if sssd_ldap_override_gid is defined %}
-override_gid = {{ sssd_ldap_override_gid }}
+{% if domain.ldap_user_name is defined %}
+ldap_user_name = {{ domain.ldap_user_name }}
 {% endif %}
+{% if domain.ldap_user_uid_number is defined %}
+ldap_user_uid_number = {{ domain.ldap_user_uid_number }}
+{% endif %}
+{% if domain.ldap_user_gid_number is defined %}
+ldap_user_gid_number = {{ domain.ldap_user_gid_number }}
+{% endif %}
+{% if domain.ldap_user_ssh_public_key is defined %}
+ldap_user_ssh_public_key = {{ domain.ldap_user_ssh_public_key }}
+{% endif %}
+{% if domain.ldap_user_email is defined %}
+ldap_user_email = {{ domain.ldap_user_email }}
+{% endif %}
+{% if domain.override_gid is defined %}
+override_gid = {{ domain.override_gid }}
+{% endif %}
+{# custom group settings #}
+{% if domain.ldap_group_search_base is defined %}
+ldap_group_search_base = {{ domain.ldap_group_search_base }}
+{% endif %}
+{% if domain.ldap_group_object_class is defined %}
+ldap_group_object_class = {{ domain.ldap_group_object_class }}
+{% endif %}
+{% if domain.ldap_group_name is defined %}
+ldap_group_name = {{ domain.ldap_group_name }}
+{% endif %}
+{% if domain.ldap_group_gid_number is defined %}
+ldap_group_gid_number = {{ domain.ldap_group_gid_number }}
+{% endif %}
+{% if domain.ldap_group_member is defined %}
+ldap_group_member = {{ domain.ldap_group_member }}
+{% endif %}
+
+{% endfor %}

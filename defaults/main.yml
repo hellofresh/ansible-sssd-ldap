@@ -1,12 +1,35 @@
 ---
-sssd_ldap_search_base: dc=example,dc=org
-sssd_ldap_uri: ldap://example.org
-sssd_ldap_default_bind_dn: cn=manager,dc=example,dc=org
-sssd_ldap_default_authtok: bind_password
-sssd_ldap_user_ssh_public_key: sshPublicKey
-# If you need to override user's primary group you can use `sssd_ldap_override_gid` variable
-# sssd_ldap_override_gid: 500
+sssd_defaults:
+  # Debug level for:
+  # Fatal failures, Critical failures, Serious failures
+  # Configuration settings, Function data
+  debug_level: '0x0370'
+  services: nss,pam,ssh
 
-# The following variables can be defined:
-# sssd_ldap_user_search_base:
-# sssd_ldap_group_search_base:
+sssd_nss:
+  filter_users: root
+  filter_groups: root
+
+sssd_domain_defaults:
+  id_provider: ldap
+  auth_provider: ldap
+  enumerate: 'false'
+  ldap_uri: ldap://localhost
+  ldap_id_use_start_tls: 'false'
+  ldap_tls_reqcert: never
+  ldap_default_bind_dn: cn=manager,dc=example,dc=org
+  ldap_default_authtok_type: password
+  ldap_default_authtok: bind_password
+  ldap_search_base: dc=example,dc=org
+
+sssd_domains:
+  - name: default
+    id_provider: "{{ sssd_domain_defaults.id_provider }}"
+    auth_provider: "{{ sssd_domain_defaults.auth_provider }}"
+    ldap_uri: "{{ sssd_domain_defaults.ldap_uri }}"
+    ldap_id_use_start_tls: "{{ sssd_domain_defaults.ldap_id_use_start_tls }}"
+    ldap_tls_reqcert: "{{ sssd_domain_defaults.ldap_tls_reqcert }}"
+    ldap_default_bind_dn: "{{ sssd_domain_defaults.ldap_default_bind_dn }}"
+    ldap_default_authtok_type: "{{ sssd_domain_defaults.ldap_default_authtok_type }}"
+    ldap_default_authtok: "{{ sssd_domain_defaults.ldap_default_authtok }}"
+    ldap_search_base: "{{ sssd_domain_defaults.ldap_search_base }}"
