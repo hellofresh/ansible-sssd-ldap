@@ -8,9 +8,5 @@ branches:
   only:
     - master
 
-install:
-  - pip install molecule
-  - pip install docker-py
-
 script:
-  - molecule test
+  - ./run_tests.sh
