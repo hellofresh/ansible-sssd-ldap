@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# set -x
+set -e
 
 echo "Create LDAP users"
 CUSTOM_LDIF_DIR=$(mktemp --directory)
