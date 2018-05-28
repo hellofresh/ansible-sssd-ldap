@@ -10,6 +10,22 @@
   notify:
     - restart sssd
 
+- name: update systemd service unit
+  ini_file:
+    path: /lib/systemd/system/sssd.service
+    section: "{{ item.section }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+    no_extra_spaces: yes
+  with_items:
+    - section: Service
+      option: ExecStartPre
+      value: "/bin/rm -rf /var/run/sssd.pid || true"
+    - section: Service
+      option: Restart
+      value: always
+  notify: reload systemd config
+
 - name: sssd | ensure sssd service is enabled
   service:
     name: sssd

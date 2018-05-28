@@ -11,13 +11,13 @@ platforms:
   - name: ubuntu-trusty
     image: ubuntu-upstart
     command: /sbin/init
-    privileged: 'true'
+    privileged: True
     links:
       - "openldap:openldap"
   - name: ubuntu-xenial
     image: solita/ubuntu-systemd
     command: /sbin/init
-    privileged: 'true'
+    privileged: True
     capabilities:
       - SYS_ADMIN
     volumes:
@@ -27,7 +27,7 @@ platforms:
   - name: centos-7
     image: centos/systemd
     command: /usr/sbin/init
-    privileged: 'true'
+    privileged: True
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     capabilities:

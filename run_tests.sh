@@ -61,7 +61,7 @@ then
 fi
 virtualenv venv
 . ./venv/bin/activate
-pip install ansible docker-py molecule
+pip install -r requirements.txt
 
 echo "Run molecule tests"
 molecule test

@@ -30,3 +30,10 @@
   service:
     name: "{{ sssd_ldap_ssh_service }}"
     state: restarted
+
+- name: reload systemd config
+  systemd:
+    name: sssd
+    state: restarted
+    daemon_reload: yes
+  when: ansible_distribution_release != 'trusty'
