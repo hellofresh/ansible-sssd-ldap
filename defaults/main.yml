@@ -21,6 +21,7 @@ sssd_domain_defaults:
   ldap_default_authtok_type: password
   ldap_default_authtok: bind_password
   ldap_search_base: dc=example,dc=org
+  ldap_user_shell: /bin/bash
 
 sssd_domains:
   - name: default
@@ -33,3 +34,4 @@ sssd_domains:
     ldap_default_authtok_type: "{{ sssd_domain_defaults.ldap_default_authtok_type }}"
     ldap_default_authtok: "{{ sssd_domain_defaults.ldap_default_authtok }}"
     ldap_search_base: "{{ sssd_domain_defaults.ldap_search_base }}"
+    ldap_user_shell: "{{ sssd_domain_defaults.ldap_user_shell }}"

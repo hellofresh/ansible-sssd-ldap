@@ -83,5 +83,8 @@ ldap_group_gid_number = {{ domain.ldap_group_gid_number }}
 {% if domain.ldap_group_member is defined %}
 ldap_group_member = {{ domain.ldap_group_member }}
 {% endif %}
+{% if domain.ldap_user_shell is defined %}
+ldap_user_shell = {{ domain.ldap_user_shell }}
+{% endif %}
 
 {% endfor %}
