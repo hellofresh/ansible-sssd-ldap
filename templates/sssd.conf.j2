@@ -11,6 +11,12 @@ filter_groups = {{ sssd_nss.filter_users }}
 {% for domain in sssd_domains %}
 [domain/{{ domain.name }}]
 {# providers #}
+min_id = {{ domain.min_id
+    if domain.min_id is defined
+    else sssd_domain_defaults.min_id }}
+max_id = {{ domain.max_id
+    if domain.max_id is defined
+    else sssd_domain_defaults.max_id }}
 id_provider = {{ domain.id_provider
     if domain.id_provider is defined
     else sssd_domain_defaults.id_provider }}
