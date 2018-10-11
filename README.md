@@ -35,6 +35,8 @@ feel free to create pull requests. You can find available options in `defaults/m
 Some default values for domain specific configuration options are:
 
     sssd_domain_defaults:
+      min_id: 1
+      max_id: 0
       id_provider: ldap
       auth_provider: ldap
       enumerate: 'false'
@@ -51,6 +53,8 @@ Role supports configuring multiple domains using following syntax:
 
     sssd_domains:
       - name: domain_name
+        min_id:
+        max_id:
         id_provider:
         auth_provider:
         ldap_uri:

@@ -11,6 +11,8 @@ sssd_nss:
   filter_groups: root
 
 sssd_domain_defaults:
+  min_id: 1
+  max_id: 0
   id_provider: ldap
   auth_provider: ldap
   enumerate: 'false'
@@ -24,6 +26,8 @@ sssd_domain_defaults:
 
 sssd_domains:
   - name: default
+    min_id: "{{ sssd_domain_defaults.min_id }}"
+    max_id: "{{ sssd_domain_defaults.max_id }}"
     id_provider: "{{ sssd_domain_defaults.id_provider }}"
     auth_provider: "{{ sssd_domain_defaults.auth_provider }}"
     ldap_uri: "{{ sssd_domain_defaults.ldap_uri }}"
