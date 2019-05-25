@@ -70,8 +70,17 @@ ldap_user_ssh_public_key = {{ domain.ldap_user_ssh_public_key }}
 {% if domain.ldap_user_email is defined %}
 ldap_user_email = {{ domain.ldap_user_email }}
 {% endif %}
+{% if domain.ldap_user_gecos is defined %}
+ldap_user_gecos = {{ domain.ldap_user_gecos }}
+{% endif %}
 {% if domain.override_gid is defined %}
 override_gid = {{ domain.override_gid }}
+{% endif %}
+{% if domain.override_shell is defined %}
+override_shell = {{ domain.override_shell }}
+{% endif %}
+{% if domain.override_homedir is defined %}
+override_homedir = {{ domain.override_homedir }}
 {% endif %}
 {# custom group settings #}
 {% if domain.ldap_group_search_base is defined %}
@@ -88,6 +97,12 @@ ldap_group_gid_number = {{ domain.ldap_group_gid_number }}
 {% endif %}
 {% if domain.ldap_group_member is defined %}
 ldap_group_member = {{ domain.ldap_group_member }}
+{% endif %}
+{% if domain.ldap_schema is defined %}
+ldap_schema = {{ domain.ldap_schema }}
+{% endif %}
+{% if domain.cache_credentials is defined %}
+cache_credentials = {{ domain.cache_credentials }}
 {% endif %}
 
 {% endfor %}
