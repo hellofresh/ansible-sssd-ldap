@@ -73,6 +73,12 @@ ldap_user_email = {{ domain.ldap_user_email }}
 {% if domain.ldap_user_gecos is defined %}
 ldap_user_gecos = {{ domain.ldap_user_gecos }}
 {% endif %}
+{% if domain.ldap_pwdlockout_dn is defined %}
+ldap_pwdlockout_dn = {{ domain.ldap_pwdlockout_dn }}
+{% endif %}
+{% if domain.ldap_access_filter is defined %}
+ldap_access_filter = {{ domain.ldap_access_filter }}
+{% endif %}
 {% if domain.override_gid is defined %}
 override_gid = {{ domain.override_gid }}
 {% endif %}
