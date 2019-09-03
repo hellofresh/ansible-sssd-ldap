@@ -86,7 +86,7 @@ Use their name later within the `ldap_tls_cacert` parameter.
     certificates:
       - my_root_ca.crt
 
-Options that are listed in `sssd_domain_defaults` will allways be present in `sssd.conf`,
+Options that are listed in `sssd_domain_defaults` will always be present in `sssd.conf`,
 other options can be omitted.
 
 Dependencies
