@@ -1,4 +1,6 @@
 ---
+certificate_base_path: /usr/local/share/ca-certificates
+
 sssd_defaults:
   # Debug level for:
   # Fatal failures, Critical failures, Serious failures

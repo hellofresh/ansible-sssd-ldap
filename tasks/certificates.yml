@@ -1,0 +1,13 @@
+---
+- name: ensure certificate directory exists
+  file:
+    path: '{{ certificate_base_path }}'
+    state: directory
+
+- name: copy certificates
+  copy:
+    src: '{{ item }}'
+    dest: '{{ certificate_base_path }}/{{ item }}'
+  loop: '{{ certificates }}'
+  notify:
+    - restart sssd

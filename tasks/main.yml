@@ -12,6 +12,9 @@
 
 - include: packages.yml
 
+- include_tasks: certificates.yml
+  when: certificates is defined
+
 - include: sssd.yml
 
 - include: nsswitch.yml

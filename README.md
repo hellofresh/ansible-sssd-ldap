@@ -34,6 +34,7 @@ feel free to create pull requests. You can find available options in `defaults/m
 
 Some default values for domain specific configuration options are:
 
+
     sssd_domain_defaults:
       min_id: 1
       max_id: 0
@@ -77,6 +78,12 @@ Role supports configuring multiple domains using following syntax:
         ldap_group_name:
         ldap_group_gid_number:
         ldap_group_member:
+        ldap_tls_cacert:
+    
+    certificates:
+      - my_root_ca.crt
+
+(**Note: you have to put a file with the certificate name inside your files directory, to make the parameters ldap_tls_cacert and certificates work**)
 
 Options that are listed in `sssd_domain_defaults` will allways be present in `sssd.conf`,
 other options can be omitted.
