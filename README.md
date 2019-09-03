@@ -79,11 +79,12 @@ Role supports configuring multiple domains using following syntax:
         ldap_group_gid_number:
         ldap_group_member:
         ldap_tls_cacert:
-    
+
+Add certificates from your files directory as you wish.
+Use their name later within the `ldap_tls_cacert` parameter.
+
     certificates:
       - my_root_ca.crt
-
-(**Note: you have to put a file with the certificate name inside your files directory, to make the parameters ldap_tls_cacert and certificates work**)
 
 Options that are listed in `sssd_domain_defaults` will allways be present in `sssd.conf`,
 other options can be omitted.
