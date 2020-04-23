@@ -53,8 +53,6 @@ scenario:
   name: default
 verifier:
   name: testinfra
-  options:
-    v: true
   lint: |
     set -e
     flake8
