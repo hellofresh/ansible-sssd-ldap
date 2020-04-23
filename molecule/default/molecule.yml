@@ -47,11 +47,9 @@ provisioner:
             ldap_default_authtok: s3cr3t
             ldap_user_ssh_public_key: sshPublicKey
             override_gid: 1
-  lint:
-    name: ansible-lint
-    options:
-      x:
-        - ANSIBLE0013
+  lint: |
+    set -e
+    ansible-lint -x ANSIBLE0013
 scenario:
   name: default
 verifier:
