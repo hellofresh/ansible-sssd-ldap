@@ -5,7 +5,7 @@ driver:
   name: docker
 lint: |
   set -e
-  yamllint -c molecule/default/.yamllint
+  yamllint -c molecule/default/.yamllint .
 platforms:
   - name: ubuntu-trusty
     image: ubuntu-upstart
