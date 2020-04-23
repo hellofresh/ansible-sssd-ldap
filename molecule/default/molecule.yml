@@ -3,10 +3,9 @@ dependency:
   name: galaxy
 driver:
   name: docker
-lint:
-  name: yamllint
-  options:
-    config-file: molecule/default/.yamllint
+lint: |
+  set -e
+  yamllint -config-file molecule/default/.yamllint
 platforms:
   - name: ubuntu-trusty
     image: ubuntu-upstart
@@ -56,5 +55,6 @@ verifier:
   name: testinfra
   options:
     v: true
-  lint:
-    name: flake8
+  lint: |
+    set -e
+    flake8
