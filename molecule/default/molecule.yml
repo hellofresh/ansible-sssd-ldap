@@ -3,10 +3,9 @@ dependency:
   name: galaxy
 driver:
   name: docker
-lint:
-  name: yamllint
-  options:
-    config-file: molecule/default/.yamllint
+lint: |
+  set -e
+  yamllint -c molecule/default/.yamllint .
 platforms:
   - name: ubuntu-trusty
     image: ubuntu-upstart
@@ -47,16 +46,13 @@ provisioner:
             ldap_default_authtok: s3cr3t
             ldap_user_ssh_public_key: sshPublicKey
             override_gid: 1
-  lint:
-    name: ansible-lint
-    options:
-      x:
-        - ANSIBLE0013
+  lint: |
+    set -e
+    ansible-lint -x ANSIBLE0013
 scenario:
   name: default
 verifier:
   name: testinfra
-  options:
-    v: true
-  lint:
-    name: flake8
+  lint: |
+    set -e
+    flake8
