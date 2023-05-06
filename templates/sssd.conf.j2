@@ -11,6 +11,9 @@ filter_groups = {{ sssd_nss.filter_users }}
 {% for domain in sssd_domains %}
 [domain/{{ domain.name }}]
 {# providers #}
+ldap_schema = {{ domain.ldap_schema
+    if domain.ldap_schema is defined
+    else sssd_domain_defaults.ldap_schema }}
 min_id = {{ domain.min_id
     if domain.min_id is defined
     else sssd_domain_defaults.min_id }}
