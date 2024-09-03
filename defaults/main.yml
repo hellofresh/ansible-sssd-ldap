@@ -11,10 +11,12 @@ sssd_nss:
   filter_groups: root
 
 sssd_domain_defaults:
+  ldap_schema: rfc2307
   min_id: 1
   max_id: 0
   id_provider: ldap
   auth_provider: ldap
+  cache_credentials: 'false'
   enumerate: 'false'
   ldap_uri: ldap://localhost
   ldap_id_use_start_tls: 'false'
