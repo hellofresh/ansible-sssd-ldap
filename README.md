@@ -39,6 +39,8 @@ Some default values for domain specific configuration options are:
       max_id: 0
       id_provider: ldap
       auth_provider: ldap
+      ldap_schema: rfc2307
+      cache_credentials: 'false'
       enumerate: 'false'
       ldap_uri: ldap://localhost
       ldap_id_use_start_tls: 'false'
