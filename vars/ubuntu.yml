@@ -6,5 +6,6 @@ sssd_ldap_packages:
   - openssh-server
   - libnss-sss
   - libpam-sss
+  - libsss-sudo
 
 sssd_ldap_ssh_service: ssh
